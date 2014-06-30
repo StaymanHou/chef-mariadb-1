@@ -29,5 +29,5 @@ depends 'yum-epel'
 
 depends 'apt',              '~> 2.0'
 
-depends 'openssl',          '~> 1.1'
+depends 'openssl'
 depends 'build-essential',  '~> 2.0'
