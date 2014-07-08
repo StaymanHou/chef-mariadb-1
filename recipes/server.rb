@@ -70,6 +70,15 @@ when 'windows'
   include_recipe 'mariadb::_server_windows'
 end
 
+# The data directory _should_ exist at this point. This makes absolutely
+# sure that it is, so the replication script installation below can't fail
+directory node['mariadb']['data_dir'] do
+  owner     'mysql'
+  group     'mysql'
+  action    :create
+  recursive true
+end
+
 template "#{node['mariadb']['data_dir']}/replication_master_script" do
   source 'replication_master_script.erb'
   owner 'root' unless platform? 'windows'
