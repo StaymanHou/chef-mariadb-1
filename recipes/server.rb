@@ -35,13 +35,15 @@ if Chef::Config[:solo]
   end
 else
   # generate all passwords
-  node.set_unless['mariadb']['server_debian_password'] = secure_password
-  node.set_unless['mariadb']['server_root_password']   = secure_password
-  node.set_unless['mariadb']['server_repl_password']   = secure_password
-  node.save
+  unless node['mariadb']['donot_generate_passwords']
+    node.set_unless['mariadb']['server_debian_password'] = secure_password
+    node.set_unless['mariadb']['server_root_password'] = secure_password
+    node.set_unless['mariadb']['server_repl_password'] = secure_password
+    node.save
+  end
 end
 
-unless node['mariadb']['replication']['master'].nil? && node['mariadb']['replication']['slave'].nil?
+unless
   missing_attrs = %w{user}.select { |attr| node['mariadb']['replication'][attr].nil? }.map { |attr| "node['mariadb']['replication']" }
 
   unless missing_attrs.empty?
@@ -60,22 +62,22 @@ unless node['mariadb']['replication']['master'].nil? && node['mariadb']['replica
 end
 
 case node['platform_family']
-when 'rhel', 'fedora'
-  include_recipe 'mariadb::_server_rhel'
-when 'debian'
-  include_recipe 'mariadb::_server_debian'
-when 'mac_os_x'
-  include_recipe 'mariadb::_server_mac_os_x'
-when 'windows'
-  include_recipe 'mariadb::_server_windows'
+  when 'rhel', 'fedora'
+    include_recipe 'mariadb::_server_rhel'
+  when 'debian'
+    include_recipe 'mariadb::_server_debian'
+  when 'mac_os_x'
+    include_recipe 'mariadb::_server_mac_os_x'
+  when 'windows'
+    include_recipe 'mariadb::_server_windows'
 end
 
 # The data directory _should_ exist at this point. This makes absolutely
 # sure that it is, so the replication script installation below can't fail
 directory node['mariadb']['data_dir'] do
-  owner     'mysql'
-  group     'mysql'
-  action    :create
+  owner 'mysql'
+  group 'mysql'
+  action :create
   recursive true
 end
 
