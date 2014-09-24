@@ -31,6 +31,11 @@ package 'mysql-libs' do
   only_if { node['platform_family'] == 'rhel' }
 end
 
+package 'mariadb-libs' do
+  action :remove
+  only_if { node['platform_family'] == 'rhel' && node['platform_version'].to_f >= 7.0 }
+end
+
 case node['platform']
 when 'windows'
   package_file = node['mariadb']['client']['package_file']

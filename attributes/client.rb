@@ -29,11 +29,7 @@ when 'fedora'
 when 'suse'
   default['mariadb']['client']['packages'] = %w{mariadb-community-server-client libmariadbclient-devel}
 when 'debian'
-  if debian_before_squeeze? || ubuntu_before_lucid?
-    default['mariadb']['client']['packages'] = %w{mariadb-client libmariadbclient15-dev}
-  else
-    default['mariadb']['client']['packages'] = %w{mariadb-client-5.5 libmariadbclient-dev}
-  end
+  default['mariadb']['client']['packages'] = %w{mariadb-client libmariadbclient-dev}
 when 'freebsd'
   default['mariadb']['client']['packages'] = %w{mariadb55-client}
 when 'windows'

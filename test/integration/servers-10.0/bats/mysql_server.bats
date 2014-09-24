@@ -3,5 +3,5 @@
 }
 
 @test 'check list databases' {
-    sudo mysql --protocol socket -uroot -pilikerandompasswords -e 'show databases;'
+    sudo mysql -h localhost -uroot -pilovestrongpasswords -e 'show databases;'
 }

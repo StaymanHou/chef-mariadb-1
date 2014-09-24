@@ -45,10 +45,18 @@ when 'rhel'
   arch = 'amd64' if arch == 'x86_64'
   arch = 'x86' unless arch == 'amd64'
   pversion = node['platform_version'].split('.').first
+  platform = node['platform']
+
+  if platform == 'centos' and pversion == '7'
+    platform = 'fedora'
+    pversion = '20'
+  end
+
+  system_string = "#{platform}#{pversion}-#{arch}"
 
   yum_repository 'mariadb' do
     description 'MariaDB Repository'
-    baseurl     "http://yum.mariadb.org/#{node['mariadb']['version']}/#{node['platform']}#{pversion}-#{arch}"
+    baseurl     "http://yum.mariadb.org/#{node['mariadb']['version']}/#{system_string}"
     gpgkey      'https://yum.mariadb.org/RPM-GPG-KEY-MariaDB'
   end
 when 'fedora'
