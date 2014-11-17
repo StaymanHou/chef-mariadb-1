@@ -41,7 +41,7 @@ when 'windows'
   package_file = node['mariadb']['client']['package_file']
   remote_file "#{Chef::Config[:file_cache_path]}/#{package_file}" do
     source node['mariadb']['client']['url']
-    not_if { File.exists? "#{Chef::Config[:file_cache_path]}/#{package_file}" }
+    not_if { File.exist? "#{Chef::Config[:file_cache_path]}/#{package_file}" }
   end
 
   windows_package node['mariadb']['client']['packages'].first do

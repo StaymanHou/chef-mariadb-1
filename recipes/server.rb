@@ -23,15 +23,15 @@
 include_recipe 'mariadb::client'
 
 if Chef::Config[:solo]
-  missing_attrs = %w{
+  missing_attrs = %w(
     server_debian_password
     server_root_password
     server_repl_password
-  }.select { |attr| node['mariadb'][attr].nil? }.map { |attr| "node['mariadb']['#{attr}']" }
+  ).select { |attr| node['mariadb'][attr].nil? }.map { |attr| "node['mariadb']['#{attr}']" }
 
   unless missing_attrs.empty?
     Chef::Application.fatal! "You must set #{missing_attrs.join(', ')} in chef-solo mode." \
-    " For more information, see https://github.com/joerocklin/chef-mariadb#chef-solo-note"
+    ' For more information, see https://github.com/joerocklin/chef-mariadb#chef-solo-note'
   end
 else
   # generate all passwords
@@ -43,8 +43,8 @@ else
   end
 end
 
-unless
-  missing_attrs = %w{user}.select { |attr| node['mariadb']['replication'][attr].nil? }.map { |attr| "node['mariadb']['replication']" }
+unless node['mariadb']['replication']['master'].nil? && node['mariadb']['replication']['slave'].nil?
+  missing_attrs = %w(user).select { |attr| node['mariadb']['replication'][attr].nil? }.map { |_attr| "node['mariadb']['replication']" }
 
   unless missing_attrs.empty?
     Chef::Application.fatal!('You must set for the replication')

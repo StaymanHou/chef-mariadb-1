@@ -19,8 +19,8 @@ Platform
 
 Tested on:
 
-- CentOS 5.9, 6.5
-- Ubuntu 10.04, 12.04
+- CentOS 5.10, 6.5, 7.0
+- Ubuntu 10.04, 12.04, 14.04
 
 See TESTING.md for information about running tests in Opscode's Test Kitchen.
 
@@ -179,7 +179,7 @@ For more infromation on the compile vs execution phase of a Chef run:
 Chef Solo Note
 --------------
 
-These node attributes are stored on the Chef server when using `chef-client`. Because `chef-solo` does not connect to a server or save the node object at all, to have the same passwords persist across `chef-solo` runs, you must specify them in the `json_attribs` file used. For example: 
+These node attributes are stored on the Chef server when using `chef-client`. Because `chef-solo` does not connect to a server or save the node object at all, to have the same passwords persist across `chef-solo` runs, you must specify them in the `json_attribs` file used. For example:
 
 ```javascript
     {

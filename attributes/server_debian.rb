@@ -5,7 +5,7 @@ when 'debian'
   # Keep in this namespace for backwards compat
   default['mariadb']['data_dir'] = '/var/lib/mysql'
 
-  default['mariadb']['server']['packages'] = %w{ mariadb-server apparmor-utils }
+  default['mariadb']['server']['packages'] = %w(mariadb-server apparmor-utils)
   default['mariadb']['server']['slow_query_log']       = 1
   default['mariadb']['server']['slow_query_log_file']  = '/var/log/mysql/slow.log'
 

@@ -32,9 +32,9 @@ end
 # set the root password for situations that don't support pre-seeding.
 # (eg. platforms other than debian/ubuntu & drop-in mysql replacements)
 execute 'assign-root-password mac_os_x' do
-  command %Q["#{node['mariadb']['mysqladmin_bin']}" -u root password '#{node['mariadb']['server_root_password']}']
+  command %("#{node['mariadb']['mysqladmin_bin']}" -u root password '#{node['mariadb']['server_root_password']}')
   action :run
-  only_if %Q["#{node['mariadb']['mysql_bin']}" -u root -e 'show databases;']
+  only_if %("#{node['mariadb']['mysql_bin']}" -u root -e 'show databases;')
 end
 
 #----

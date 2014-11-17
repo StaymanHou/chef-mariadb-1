@@ -1,14 +1,19 @@
 AllCops:
-  Excludes:
+  Exclude:
     - vendor/**
 
 AlignParameters:
-  Enabled: false
+  Enabled: true
 Encoding:
   Enabled: false
 HashSyntax:
-  Enabled: false
+  Enabled: true
 LineLength:
   Enabled: false
 MethodLength:
   Max: 30
+
+SingleSpaceBeforeFirstArg:
+  Enabled: false
+CommentIndentation:
+  Enabled: false

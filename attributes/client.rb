@@ -23,15 +23,15 @@
 
 case node['platform_family']
 when 'rhel'
-  default['mariadb']['client']['packages'] = %w{MariaDB-client MariaDB-devel}
+  default['mariadb']['client']['packages'] = %w(MariaDB-client MariaDB-devel)
 when 'fedora'
-  default['mariadb']['client']['packages'] = %w{mariadb mariadb-devel}
+  default['mariadb']['client']['packages'] = %w(mariadb mariadb-devel)
 when 'suse'
-  default['mariadb']['client']['packages'] = %w{mariadb-community-server-client libmariadbclient-devel}
+  default['mariadb']['client']['packages'] = %w(mariadb-community-server-client libmariadbclient-devel)
 when 'debian'
-  default['mariadb']['client']['packages'] = %w{mariadb-client libmariadbclient-dev}
+  default['mariadb']['client']['packages'] = %w(mariadb-client libmariadbclient-dev)
 when 'freebsd'
-  default['mariadb']['client']['packages'] = %w{mariadb55-client}
+  default['mariadb']['client']['packages'] = %w(mariadb55-client)
 when 'windows'
   default['mariadb']['client']['version']      = '6.0.2'
   default['mariadb']['client']['arch']         = 'win32' # force 32 bit to work with mariadb gem
@@ -44,7 +44,7 @@ when 'windows'
   default['mariadb']['client']['bin_dir']      = "#{mariadb['client']['basedir']}\\bin"
   default['mariadb']['client']['ruby_dir']     = RbConfig::CONFIG['bindir']
 when 'mac_os_x'
-  default['mariadb']['client']['packages'] = %w{mariadb-connector-c}
+  default['mariadb']['client']['packages'] = %w(mariadb-connector-c)
 else
-  default['mariadb']['client']['packages'] = %w{mariadb-client libmariadbclient-dev}
+  default['mariadb']['client']['packages'] = %w(mariadb-client libmariadbclient-dev)
 end

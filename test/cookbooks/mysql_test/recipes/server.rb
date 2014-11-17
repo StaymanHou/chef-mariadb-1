@@ -6,9 +6,9 @@ include_recipe 'mariadb::ruby'
 include_recupe 'mariadb::server'
 
 mysql_connection = {
-  :host     => 'localhost',
-  :username => 'root',
-  :password => node['mariadb']['server_root_password']
+  host: 'localhost',
+  username: 'root',
+  password: node['mariadb']['server_root_password']
 }
 
 mysql_database node['mysql_test']['database'] do
@@ -28,7 +28,7 @@ end
 mysql_conn_args = "--user=root --password='#{node['mariadb']['server_root_password']}'"
 
 execute 'create-sample-data' do
-  command %Q{mysql #{mysql_conn_args} #{node['mysql_test']['database']} <<EOF
+  command %{mysql #{mysql_conn_args} #{node['mysql_test']['database']} <<EOF
     CREATE TABLE tv_chef (name VARCHAR(32) PRIMARY KEY);
     INSERT INTO tv_chef (name) VALUES ('Alison Holst');
     INSERT INTO tv_chef (name) VALUES ('Nigella Lawson');

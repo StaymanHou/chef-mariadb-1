@@ -7,7 +7,7 @@ node['mariadb']['server']['packages'].each do |name|
 end
 
 #----
-node['mariadb']['server']['directories'].each do |key, value|
+node['mariadb']['server']['directories'].each do |_key, value|
   directory value do
     owner     'mysql'
     group     'mysql'
@@ -75,6 +75,6 @@ end
 
 service 'mysql' do
   service_name node['mariadb']['server']['service_name']
-  supports     :status => true, :restart => true, :reload => true
+  supports     status: true, restart: true, reload: true
   action       [:enable, :start]
 end
