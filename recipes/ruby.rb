@@ -20,4 +20,4 @@
 # limitations under the License.
 #
 
-maria_chef_gem
+maria_chef_gem 'default'
