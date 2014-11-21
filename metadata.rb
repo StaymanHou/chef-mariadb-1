@@ -1,4 +1,4 @@
-name              'mariadb'
+name              'mariadb-workaround'
 maintainer        'Joe Rocklin'
 maintainer_email  'joe.rocklin@gmail.com'
 license           'Apache 2.0'
