@@ -17,14 +17,14 @@ class Chef
             run_context.include_recipe 'mariadb::client'
           end
 
-          chef_gem 'mysql' do
+          chef_gem 'mysql2' do
             action :install
           end
         end
       end
 
       def action_remove
-        chef_gem 'mysql' do
+        chef_gem 'mysql2' do
           action :remove
         end
       end
